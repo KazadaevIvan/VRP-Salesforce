@@ -1,5 +1,6 @@
 package page;
 
+import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -31,9 +32,9 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
-    public LoginPage login(String userName, String password) {
-        driver.findElement(USERNAME).sendKeys(userName);
-        driver.findElement(PASSWORD).sendKeys(password);
+    public LoginPage login(User user) {
+        driver.findElement(USERNAME).sendKeys(user.getUsername());
+        driver.findElement(PASSWORD).sendKeys(user.getPassword());
         driver.findElement(LOGIN_BUTTON).click();
         return this;
     }
