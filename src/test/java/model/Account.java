@@ -27,12 +27,12 @@ public class Account {
     String shippingCountry;
 
     public String billingAddressConstructor() {
-        return getBillingStreet() + "\n" + getBillingCity() + ", " + getBillingState() +
-                " " + getBillingZip() + "\n" + getBillingCountry() + "\n";
+        return getBillingStreet() + "\n" + getBillingZip() + " " + getBillingCity() + "\n" + getBillingState() +
+                " " + getBillingCountry() + "\n";
     }
 
     public String shippingAddressConstructor() {
-        return getShippingStreet() + "\n" + getShippingCity() + ", " + getShippingState() +
-                " " + getShippingZip() + "\n" + getShippingCountry() + "\n";
+        return getShippingStreet() + "\n" + getShippingZip() + " " + getShippingCity() + "\n" + getShippingState() +
+                " " + getShippingCountry() + "\n";
     }
 }
