@@ -12,10 +12,10 @@ import java.util.List;
 
 public class AccountDetailsPage extends AbstractPage {
     public final static By DETAILS_TAB = By.xpath("(//*[@title='Details'])[1]/a");
-    public final static String detailLocator = "//*[contains(text(),'%s')]/ancestor::div/" +
+    public final static String DETAIL = "//*[contains(text(),'%s')]/ancestor::div/" +
             "div[@class='slds-form-element__control']/descendant::*";
-    public final static String baseInfo = "[@data-output-element-id='output-field']";
-    public final static String addressInfo = "[@class='slds-truncate']";
+    public final static String BASE_INFO = "[@data-output-element-id='output-field']";
+    public final static String ADDRESS_INFO = "[@class='slds-truncate']";
 
     public AccountDetailsPage(WebDriver driver) {
         super(driver);
@@ -43,12 +43,12 @@ public class AccountDetailsPage extends AbstractPage {
     }
 
     public String getPoleText(String poleName) {
-        return driver.findElement(By.xpath(String.format(detailLocator + baseInfo, poleName))).getText();
+        return driver.findElement(By.xpath(String.format(DETAIL + BASE_INFO, poleName))).getText();
     }
 
     public String getAddressPoleText(String addressType) {
         StringBuilder address = new StringBuilder();
-        List<WebElement> list = driver.findElements(By.xpath(String.format(detailLocator + addressInfo, addressType)));
+        List<WebElement> list = driver.findElements(By.xpath(String.format(DETAIL + ADDRESS_INFO, addressType)));
         for (WebElement line : list) {
             address.append(line.getText()).append("\n");
         }
