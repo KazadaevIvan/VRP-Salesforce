@@ -16,6 +16,7 @@ public class NewAccountModal extends AbstractPage {
 
     public final static By ACCOUNT_NAME_POLE = By.xpath("//span[contains(text(),'Sort')]/following-sibling::" +
             "span[contains(text(),'Account Name')]");
+    public final static By SAVE_BUTTON = By.xpath("//*[@title='Save']");
 
     public NewAccountModal(WebDriver driver) {
         super(driver);
@@ -55,5 +56,11 @@ public class NewAccountModal extends AbstractPage {
         new Input(driver, "Shipping Zip").write(account.getShippingZip());
         new Input(driver, "Shipping Country").write(account.getShippingCountry());
         return this;
+    }
+
+    public AccountDetailsPage clickSaveButton() {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(SAVE_BUTTON));
+        driver.findElement(SAVE_BUTTON).click();
+        return new AccountDetailsPage(driver);
     }
 }
