@@ -29,7 +29,7 @@ public class AccountDetailsPage extends AbstractPage {
     @Override
     public AccountDetailsPage isPageOpened() {
         try {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(DETAILS_TAB));
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(DETAILS_TAB));
         } catch (TimeoutException e) {
             Assert.fail("The page has not been loaded. Details not found by locator " + DETAILS_TAB);
         }
@@ -37,7 +37,6 @@ public class AccountDetailsPage extends AbstractPage {
     }
 
     public AccountDetailsPage openAccountDetails() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(DETAILS_TAB));
         driver.findElement(DETAILS_TAB).click();
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(DETAIL + BASE_INFO, "Account Name"))));
         return this;
