@@ -9,12 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class AccountDetailsPage extends AbstractPage {
-    public final static By DETAILS_TAB = By.xpath("(//*[@title='Details'])[1]/a");
-    public final static String DETAIL = "//*[contains(text(),'%s')]/ancestor::div/" +
-            "div[@class='slds-form-element__control']/descendant::";
-    public final static String BASE_INFO = "*[@data-output-element-id='output-field']";
-    public final static String ADDRESS_DETAIL = "//*[contains(text(),'%s')]/following::div/*";
-    public final static String EDIT_BILLING_ADDRESS_DETAIL_BUTTON = String.format(DETAIL, "Billing") + "button";
+    public final static By DETAILS_TAB = By.xpath("//li[@title='Details']/a");
+    public final static String DETAIL = "//span[text()='%s']/parent::div/following::*[@data-output-element-id='output-field']";
+    public final static String EDIT_DETAIL_BUTTON = "/following::button[contains(@title,'Edit')]";
+    public final static String ADDRESS_DETAIL = "//span[contains(text(),'%s')]/following::*[self::input or self::textarea]";
     public final static By CANCEL_EDIT_BUTTON = By.xpath("//button[@name='CancelEdit']");
 
     public AccountDetailsPage(WebDriver driver) {
@@ -38,12 +36,12 @@ public class AccountDetailsPage extends AbstractPage {
 
     public AccountDetailsPage openAccountDetails() {
         driver.findElement(DETAILS_TAB).click();
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(DETAIL + BASE_INFO, "Account Name"))));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(DETAIL, "Account Name"))));
         return this;
     }
 
-    public String getPoleText(String poleName) {
-        return driver.findElement(By.xpath(String.format(DETAIL + BASE_INFO, poleName))).getText();
+    private String getPoleText(String poleName) {
+        return driver.findElement(By.xpath(String.format(DETAIL, poleName))).getText();
     }
 
     private String getAddressPoleText(String poleName) {
@@ -61,7 +59,7 @@ public class AccountDetailsPage extends AbstractPage {
                 .employees(getPoleText("Employees"))
                 .build();
 
-        driver.findElement(By.xpath(EDIT_BILLING_ADDRESS_DETAIL_BUTTON)).click();
+        driver.findElement(By.xpath(String.format(DETAIL, "Billing Address") + EDIT_DETAIL_BUTTON)).click();
 
         account.setBillingStreet(getAddressPoleText("Billing Street"));
         account.setBillingCity(getAddressPoleText("Billing City"));

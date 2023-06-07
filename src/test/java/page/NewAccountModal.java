@@ -14,9 +14,8 @@ import org.testng.Assert;
 
 public class NewAccountModal extends AbstractPage {
 
-    public final static By ACCOUNT_NAME_POLE = By.xpath("//span[contains(text(),'Sort')]/following-sibling::" +
-            "span[contains(text(),'Account Name')]");
-    public final static By SAVE_BUTTON = By.xpath("//*[@title='Save']");
+    public final static By ACCOUNT_NAME_POLE = By.xpath("//span[contains(text(),'Account Name')]/following::input");
+    public final static By SAVE_BUTTON = By.xpath("//button[@title='Save']");
 
     public NewAccountModal(WebDriver driver) {
         super(driver);

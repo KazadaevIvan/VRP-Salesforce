@@ -6,8 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DropDown extends AbstractElement {
-    public final static String SELECT = "//*[contains(text(),'%s')]/ancestor::div[contains(@class, 'uiInputSelect')]//a";
-    public final static String OPTION = "//*[@class='select-options']/descendant::a[contains(text(),'%s')]";
+    public final static String SELECT = "//span[contains(text(),'%s')]/ancestor::div[contains(@class, 'uiInputSelect')]//a";
+    public final static String OPTION = "//div[@class='select-options']/descendant::a[contains(text(),'%s')]";
 
     public DropDown(WebDriver driver, String label) {
         super(driver, label);
