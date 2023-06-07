@@ -13,7 +13,7 @@ import static org.testng.Assert.assertEquals;
 
 public class AccountTest extends CommonConditions {
 
-    @BeforeMethod
+    @BeforeMethod(description = "Login")
     public void loginUser() {
         User user = UserCreator.withCredentialsFromProperty();
 
@@ -31,10 +31,9 @@ public class AccountTest extends CommonConditions {
                 .isPageOpened()
                 .clickNewButton()
                 .isPageOpened()
-                .createAccount(account)
+                .inputAccountInfo(account)
                 .clickSaveButton()
                 .isPageOpened()
-                .openAccountDetails()
                 .getAccountDetails();
 
         assertEquals(actualAccount, account);
@@ -50,6 +49,7 @@ public class AccountTest extends CommonConditions {
                 .openAccount(updatedAccount.getAccountName())
                 .isPageOpened()
                 .editDetail("Phone", updatedAccount.getPhone())
+                .clickSaveEditButton()
                 .getAccountDetails();
 
         assertEquals(actualAccount, updatedAccount);

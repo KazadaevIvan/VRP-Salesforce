@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Account Regression Test">
+    <listeners>
+        <listener class-name="util.TestListener"/>
+    </listeners>
+
+    <test name="Account creation and update test">
+        <classes>
+            <class name="test.AccountTest"/>
+        </classes>
+    </test>
+</suite>
