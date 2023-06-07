@@ -12,7 +12,7 @@ public class AccountDetailsPage extends AbstractPage {
     public final static By DETAILS_TAB = By.xpath("//li[@title='Details']/a");
     public final static String DETAIL = "//span[text()='%s']/parent::div/following::*[@data-output-element-id='output-field']";
     public final static String EDIT_DETAIL_BUTTON = "/following::button[contains(@title,'Edit')]";
-    public final static String ADDRESS_DETAIL = "//span[contains(text(),'%s')]/following::*[self::input or self::textarea]";
+    public final static String ADDRESS_DETAIL = "//label[contains(text(),'%s')]/following::*[self::input or self::textarea]";
     public final static By CANCEL_EDIT_BUTTON = By.xpath("//button[@name='CancelEdit']");
 
     public AccountDetailsPage(WebDriver driver) {
