@@ -32,7 +32,7 @@ public class AccountListPage extends AbstractPage {
             log.info("Waiting for Accounts page to be opened");
             waitElementIsVisible(ACCOUNT_NAME_COLUMN);
         } catch (TimeoutException e) {
-            Assert.fail("The page has not been loaded. Account name column column not found by locator " + ACCOUNT_NAME_COLUMN);
+            Assert.fail("The page has not been loaded. Account name column not found by locator " + ACCOUNT_NAME_COLUMN);
         }
         return this;
     }
