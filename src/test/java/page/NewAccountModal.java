@@ -29,7 +29,8 @@ public class NewAccountModal extends AbstractPage {
     @Override
     public NewAccountModal isPageOpened() {
         try {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(ACCOUNT_NAME_POLE));
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
+                    .presenceOfElementLocated(ACCOUNT_NAME_POLE));
         } catch (TimeoutException e) {
             Assert.fail("The modal has not been loaded. Account name pole not found by locator " + ACCOUNT_NAME_POLE);
         }
@@ -58,8 +59,9 @@ public class NewAccountModal extends AbstractPage {
     }
 
     public AccountDetailsPage clickSaveButton() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(SAVE_BUTTON));
-        driver.findElement(SAVE_BUTTON).click();
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
+                .elementToBeClickable(SAVE_BUTTON))
+                .click();
         return new AccountDetailsPage(driver);
     }
 }

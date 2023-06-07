@@ -25,7 +25,8 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage isPageOpened() {
         try {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(LOGIN_BUTTON));
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
+                    .elementToBeClickable(LOGIN_BUTTON));
         } catch (TimeoutException e) {
             Assert.fail("The page has not been loaded. Login button not found by locator " + LOGIN_BUTTON);
         }
