@@ -4,8 +4,6 @@ import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class LoginPage extends AbstractPage {
@@ -25,8 +23,7 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage isPageOpened() {
         try {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                    .elementToBeClickable(LOGIN_BUTTON));
+            waitElementIsVisible(LOGIN_BUTTON);
         } catch (TimeoutException e) {
             Assert.fail("The page has not been loaded. Login button not found by locator " + LOGIN_BUTTON);
         }

@@ -8,8 +8,6 @@ import model.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class NewAccountModal extends AbstractPage {
@@ -29,8 +27,7 @@ public class NewAccountModal extends AbstractPage {
     @Override
     public NewAccountModal isPageOpened() {
         try {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                    .presenceOfElementLocated(ACCOUNT_NAME_POLE));
+            waitElementIsVisible(ACCOUNT_NAME_POLE);
         } catch (TimeoutException e) {
             Assert.fail("The modal has not been loaded. Account name pole not found by locator " + ACCOUNT_NAME_POLE);
         }
@@ -59,9 +56,7 @@ public class NewAccountModal extends AbstractPage {
     }
 
     public AccountDetailsPage clickSaveButton() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .elementToBeClickable(SAVE_BUTTON))
-                .click();
+        waitElementIsVisible(SAVE_BUTTON).click();
         return new AccountDetailsPage(driver);
     }
 }

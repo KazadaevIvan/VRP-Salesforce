@@ -4,8 +4,6 @@ import model.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class AccountDetailsPage extends AbstractPage {
@@ -28,30 +26,26 @@ public class AccountDetailsPage extends AbstractPage {
     @Override
     public AccountDetailsPage isPageOpened() {
         try {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                    .elementToBeClickable(DETAILS_TAB));
+            waitElementIsVisible(DETAILS_TAB);
         } catch (TimeoutException e) {
-            Assert.fail("The page has not been loaded. Details not found by locator " + DETAILS_TAB);
+            Assert.fail("The page has not been loaded. Details tab not found by locator " + DETAILS_TAB);
         }
         return this;
     }
 
     public AccountDetailsPage openAccountDetails() {
         driver.findElement(DETAILS_TAB).click();
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath(String.format(DETAIL, "Account Name"))));
+        waitElementIsVisible(By.xpath(String.format(DETAIL, "Account Name")));
         return this;
     }
 
     private String getPoleText(String poleName) {
-        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath(String.format(DETAIL, poleName))))
+        return waitElementIsVisible(By.xpath(String.format(DETAIL, poleName)))
                 .getText();
     }
 
     private String getAddressPoleText(String poleName) {
-        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath(String.format(EDIT_DETAIL_INPUT, poleName))))
+        return waitElementIsVisible(By.xpath(String.format(EDIT_DETAIL_INPUT, poleName)))
                 .getAttribute("value");
     }
 
@@ -85,8 +79,7 @@ public class AccountDetailsPage extends AbstractPage {
     }
 
     public AccountDetailsPage editDetail(String detail, String newValue) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .elementToBeClickable(By.xpath(String.format(DETAIL, detail) + EDIT_DETAIL_BUTTON)))
+        waitElementIsVisible(By.xpath(String.format(DETAIL, detail) + EDIT_DETAIL_BUTTON))
                 .click();
         driver.findElement(By.xpath(String.format(EDIT_DETAIL_INPUT, detail))).clear();
         driver.findElement(By.xpath(String.format(EDIT_DETAIL_INPUT, detail))).sendKeys(newValue);

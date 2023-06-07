@@ -3,8 +3,6 @@ package page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class AccountListPage extends AbstractPage {
@@ -26,25 +24,20 @@ public class AccountListPage extends AbstractPage {
     @Override
     public AccountListPage isPageOpened() {
         try {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                    .presenceOfElementLocated(ACCOUNT_NAME_COLUMN));
+            waitElementIsVisible(ACCOUNT_NAME_COLUMN);
         } catch (TimeoutException e) {
-            Assert.fail("The page has not been loaded. Account name column not found by locator " + ACCOUNT_NAME_COLUMN);
+            Assert.fail("The page has not been loaded. Account name column column not found by locator " + ACCOUNT_NAME_COLUMN);
         }
         return this;
     }
 
     public NewAccountModal clickNewButton() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .elementToBeClickable(NEW_BUTTON))
-                .click();
+        waitElementIsVisible(NEW_BUTTON).click();
         return new NewAccountModal(driver);
     }
 
     public AccountDetailsPage openAccount(String name) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .elementToBeClickable(By.xpath(String.format(ACCOUNT_NAME, name))))
-                .click();
+        waitElementIsVisible(By.xpath(String.format(ACCOUNT_NAME, name))).click();
         return new AccountDetailsPage(driver);
     }
 }
