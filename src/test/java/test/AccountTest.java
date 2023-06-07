@@ -39,4 +39,19 @@ public class AccountTest extends CommonConditions {
 
         assertEquals(actualAccount, account);
     }
+
+    @Test(description = "Verify that user could update created account", dependsOnMethods = {"newAccountShouldBeCreated"})
+    public void newAccountShouldBeUpdated() {
+        Account updatedAccount = AccountCreator.withUpdatedPhone();
+
+        Account actualAccount = new AccountListPage(driver)
+                .openPage()
+                .isPageOpened()
+                .openAccount(updatedAccount.getAccountName())
+                .isPageOpened()
+                .editDetail("Phone", updatedAccount.getPhone())
+                .getAccountDetails();
+
+        assertEquals(actualAccount, updatedAccount);
+    }
 }
