@@ -11,6 +11,7 @@ public class AccountListPage extends AbstractPage {
     public final static String URL = "https://ateneumszkolawyzsza.lightning.force.com/lightning/o/Account/list?filterName=Recent";
     public final static By ACCOUNT_NAME_COLUMN = By.xpath("//span[@title='Account Name']");
     public final static By NEW_BUTTON = By.xpath("//div[@title='New']");
+    public final static String ACCOUNT_NAME = "//*[contains(@title,'%s')]";
 
     public AccountListPage(WebDriver driver) {
         super(driver);
@@ -25,7 +26,8 @@ public class AccountListPage extends AbstractPage {
     @Override
     public AccountListPage isPageOpened() {
         try {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(ACCOUNT_NAME_COLUMN));
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
+                    .presenceOfElementLocated(ACCOUNT_NAME_COLUMN));
         } catch (TimeoutException e) {
             Assert.fail("The page has not been loaded. Account name column not found by locator " + ACCOUNT_NAME_COLUMN);
         }
@@ -33,8 +35,16 @@ public class AccountListPage extends AbstractPage {
     }
 
     public NewAccountModal clickNewButton() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(NEW_BUTTON));
-        driver.findElement(NEW_BUTTON).click();
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
+                .elementToBeClickable(NEW_BUTTON))
+                .click();
         return new NewAccountModal(driver);
+    }
+
+    public AccountDetailsPage openAccount(String name) {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
+                .elementToBeClickable(By.xpath(String.format(ACCOUNT_NAME, name))))
+                .click();
+        return new AccountDetailsPage(driver);
     }
 }
