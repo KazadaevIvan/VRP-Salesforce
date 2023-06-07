@@ -8,6 +8,7 @@ public class AccountCreator {
     public static final String TYPE = TestDataReader.getTestData("type");
     public static final String DESCRIPTION = TestDataReader.getTestData("description");
     public static final String PHONE = TestDataReader.getTestData("phone");
+    public static final String UPDATED_PHONE = TestDataReader.getTestData("updatedPhone");
     public static final String INDUSTRY = TestDataReader.getTestData("industry");
     public static final String EMPLOYEES = TestDataReader.getTestData("employees");
     public static final String BILLING_STREET = TestDataReader.getTestData("billingStreet");
@@ -29,6 +30,28 @@ public class AccountCreator {
                 .type(TYPE)
                 .description(DESCRIPTION)
                 .phone(PHONE)
+                .industry(INDUSTRY)
+                .employees(EMPLOYEES)
+                .billingStreet(BILLING_STREET)
+                .billingCity(BILLING_CITY)
+                .billingState(BILLING_STATE)
+                .billingZip(BILLING_ZIP)
+                .billingCountry(BILLING_COUNTRY)
+                .shippingStreet(SHIPPING_STREET)
+                .shippingCity(SHIPPING_CITY)
+                .shippingState(SHIPPING_STATE)
+                .shippingZip(SHIPPING_ZIP)
+                .shippingCountry(SHIPPING_COUNTRY)
+                .build();
+    }
+
+    public static Account withUpdatedPhone() {
+        return Account.builder()
+                .accountName(ACCOUNT_NAME)
+                .website(WEBSITE)
+                .type(TYPE)
+                .description(DESCRIPTION)
+                .phone(UPDATED_PHONE)
                 .industry(INDUSTRY)
                 .employees(EMPLOYEES)
                 .billingStreet(BILLING_STREET)
